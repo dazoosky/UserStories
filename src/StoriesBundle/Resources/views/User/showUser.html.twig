@@ -1,0 +1,82 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <div>
+        <h2>{{ user.name }} {{ user.surname }}</h2>
+        <h3>{{ user.description }}</h3>
+    </div>
+    <div>
+        <h2>Addresses:</h2>
+        <table>
+            <tr>
+                <th>Street</th>
+                <th>StreetNo</th>
+                <th>LocalNo</th>
+                <th>PostCode</th>
+                <th>City</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </<tr>
+            {% for address in addresses %}
+                <tr>
+                    <td>{{ address.street }}</td>
+                    <td>{{ address.streetno }}</td>
+                    <td>{{ address.localno }}</td>
+                    <td>{{ address.postcode }}</td>
+                    <td>{{ address.city }}</td>
+                    <td><a href="{{ path('stories_address_editaddress', {'id': user.id}) }}">Edit</a></td>
+                    <td><a href="{{ path('stories_address_deleteaddress', {'id': user.id}) }}">Delete</a></td>
+                </tr>
+            {% else %}
+                <tr></tr>
+            {% endfor %}
+        </table>
+        <a href="{{ path('stories_address_addaddress', {"userId": user.id }) }}">Add address...</a>
+    </div>
+    <div>
+        <h2>Phone numbers:</h2>
+        <table>
+            <tr>
+                <th>Phone</th>
+                <th>Type</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </<tr>
+            {% for phone in phones %}
+                <tr>
+                    <td>{{ phone.number }}</td>
+                    <td>{{ phone.type }}</td>
+                    <td><a href="{{ path('stories_phone_editphone', {'id': user.id}) }}">Edit</a></td>
+                    <td><a href="{{ path('stories_phone_deletephone', {'id': user.id}) }}">Delete</a></td>
+                </tr>
+            {% else %}
+                <tr></tr>
+            {% endfor %}
+        </table>
+        <a href="{{ path('stories_phone_addphone', {"userId": user.id }) }}">Add phone...</a>
+    </div>
+    <div>
+        <h2>Emails:</h2>
+        <table>
+            <tr>
+                <th>Email</th>
+                <th>Type</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </<tr>
+            {% for email in emails %}
+                <tr>
+                    <td>{{ email.email }}</td>
+                    <td>{{ email.type }}</td>
+                    <td><a href="{{ path('stories_email_editemail', {'id': user.id}) }}">Edit</a></td>
+                    <td><a href="{{ path('stories_email_deleteemail', {'id': user.id}) }}">Delete</a></td>
+                </tr>
+            {% else %}
+                <tr></tr>
+            {% endfor %}
+        </table>
+        <a href="{{ path('stories_email_addemail', {"userId": user.id }) }}">Add email...</a>
+    </div>
+        
+{% endblock %}
+

@@ -1,0 +1,26 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <div>
+        <table>
+            <tr>
+                <th>Name</th><th>Surname</th><th>Description</th><th>Edit</th><th>Delete</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td><a href="{{ path('stories_user_showuser', {'id': user.id}) }}">{{ user.name }}</td>
+                    <td>{{ user.surname }}</td>
+                    <td>{{ user.description }}</td>
+                    <td><a href="{{ path('stories_user_edituser', {'id': user.id}) }}">Edit</a></td>
+                    <td><a href="{{ path('stories_user_deleteuser', {'id': user.id}) }}">Delete</a></td>
+                </tr>
+            {% else %}
+                <tr></tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div>
+        <h2><a href="{{ path('stories_user_newuser') }}">Add new user...</a></h2>
+    </div>        
+{% endblock %}
+

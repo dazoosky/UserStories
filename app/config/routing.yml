@@ -1,0 +1,4 @@
+stories:
+    resource: "@StoriesBundle/Controller/"
+    type:     annotation
+    prefix:   /
